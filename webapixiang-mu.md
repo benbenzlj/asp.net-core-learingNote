@@ -128,7 +128,6 @@ public void ConfigureServices(IServiceCollection services)
             //Controllers
             services.AddSingleton<IToDoRepository,ToDoRepository>();
         }
-
 ```
 
 # 8.添加Controller
@@ -168,6 +167,31 @@ namespace demo02.Controllers
     }
 }
 ```
+
+### 8.1 路由和URL路径
+
+\[HttpGet\]特性标识指定响应Http Get 方法。每个方法的URL路径如下：
+
+* 在控制的路由属性中获取模板字符串［Route\("api/\[controller\]"\)］
+* 替换\[controller\]为路由名称，路由名称为路由类名去掉“Controller”后缀，在这个例子中，路由类名为“ToDoController"而路由的名称为"todo"。Asp.Net Core 中路由不区分大小写
+* 如果［HttpGet］特性有一个模板字符串，添加到此路径。此示例不使用模板字符串。
+
+在GetById方法中
+
+```
+[HttpGet("{id}", Name = "GetTodo")]
+public IActionResult GetById(string id)
+```
+
+* {id}为变量点位符，当GetById被调用，url请求中的id参数为自动赋值到方法的id变量
+
+* Name="GetTodo" 创建了一个命名路由，允许你在http 响应时链接到此路由。更多详情请参见[https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing](https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing)
+
+### 8.2 返回值 
+
+
+
+
 
 
 
