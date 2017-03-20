@@ -163,7 +163,6 @@ namespace demo02.Controllers
                 return NotFound();
             }
             return new ObjectResult(item);
-        }
     }
 }
 ```
@@ -191,7 +190,14 @@ public IActionResult GetById(string id)
 
 GetAll 方法返回一个IEnumerable，MVC自动将对象序列化为JSON并输出到HTTP响应消息的Body中。返回码在这个方法中为200，假设这里有没有未处理的异常（未处理的异常会返回5xx的错误）
 
+对比一下，GetById方法返回一般的**IActionResult**类型，它代表了大部分的返回类型，GetById方法有两个不同的返回结果。
 
+* 如果找不到跟URL请求中ID匹配的项，返回404错误。通过返回**NotFound**来完成。
+* 否则，方法返回200并且包含JSON响应。通过返回**ObjectResult**来完成。
+
+# 9.启动APP
+
+启动应用，visual studio环境按F5运行，Mac环境命令行中运行 **dotnet run.**启动后，访问http://localhost:port/api/values，
 
 
 
