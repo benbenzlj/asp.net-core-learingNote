@@ -197,7 +197,41 @@ GetAll 方法返回一个IEnumerable，MVC自动将对象序列化为JSON并输�
 
 # 9.启动APP
 
-启动应用，visual studio环境按F5运行，Mac环境命令行中运行 **dotnet run.**启动后，访问http://localhost:port/api/values，
+启动应用，visual studio环境按F5运行，Mac环境命令行中运行 **dotnet run.**启动后，访问[http://localhost:port/api/values，](http://localhost:port/api/values，)
+
+# 10.实现其它的CRUD方法
+
+## 10.1 Create
+
+```
+[HttpPost]
+public IActionResult Create([FromBody] TodoItem item)
+{
+    if (item == null)
+    {
+        return BadRequest();
+    }
+
+    _todoRepository.Add(item);
+
+    return CreatedAtRoute("GetTodo", new { id = item.Key }, item);
+}
+```
+
+这是一个HTTP  POST 方法，通过\[HttpPost\]特性来标记，\[FromBody\]特性指明MVC通过获取http请求中的Body来获取to do Item的值。
+
+CreateAtRout 返回一个201响应。这是在服务器上创建资源时返回的标准响应。CreateAtRoute也在HTTP响应头中添加了位置标签。位置标签指明了最近新创建资源的请求地址。
+
+![](/assets/asp.net core/locationHeader.png)
+
+你可以通过访问响应头的位置标签的内容来请求新创建的资源。回忆一下GetById创建了一个"GetToDo"的命名路由。
+
+```
+[HttpGet("{id}", Name = "GetTodo")]
+public IActionResult GetById(string id)
+```
+
+
 
 
 
