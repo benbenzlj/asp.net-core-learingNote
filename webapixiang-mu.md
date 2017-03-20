@@ -187,9 +187,9 @@ public IActionResult GetById(string id)
 
 * Name="GetTodo" 创建了一个命名路由，允许你在http 响应时链接到此路由。更多详情请参见[https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing](https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing)
 
-### 8.2 返回值 
+### 8.2 返回值
 
-
+GetAll 方法返回一个IEnumerable，MVC自动将对象序列化为JSON并输出到HTTP响应消息的Body中。返回码在这个方法中为200，假设这里有没有未处理的异常（未处理的异常会返回5xx的错误）
 
 
 
