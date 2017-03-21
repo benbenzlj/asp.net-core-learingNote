@@ -231,6 +231,52 @@ CreateAtRout 返回一个201响应。这是在服务器上创建资源时返回�
 public IActionResult GetById(string id)
 ```
 
+## 10.2 Update
+
+```
+[HttpPut("{id}")]
+public IActionResult Update(long id, [FromBody] TodoItem item)
+{
+    if (item == null || item.Key != id)
+    {
+        return BadRequest();
+    }
+
+    var todo = _todoRepository.Find(id);
+    if (todo == null)
+    {
+        return NotFound();
+    }
+
+    todo.IsComplete = item.IsComplete;
+    todo.Name = item.Name;
+
+    _todoRepository.Update(todo);
+    return new NoContentResult();
+}
+```
+
+Update与Create类型，但是使用了HTTP PUT，响应为204（No Content）,根据HTTP规范，一个PUT请求要求客户端发送完整的更新实体，而不是部分的。如果要实现部分更新，请使用HTTP PATCH。
+
+## 10.3 Delete
+
+```
+[HttpDelete("{id}")]
+public IActionResult Delete(long id)
+{
+    var todo = _todoRepository.Find(id);
+    if (todo == null)
+    {
+        return NotFound();
+    }
+
+    _todoRepository.Remove(id);
+    return new NoContentResult();
+}
+```
+
+响应为204（No Content）
+
 
 
 
