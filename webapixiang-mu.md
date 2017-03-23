@@ -2,7 +2,7 @@
 
 在命令行中运行命令
 
-```
+```csharp
 dotnet new webapi --创建webapi项目
 ```
 
@@ -10,7 +10,7 @@ dotnet new webapi --创建webapi项目
 
 在demo02.csproject 项目文件中添加
 
-```
+```csharp
 <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="1.1.1" />
 ```
 
@@ -18,7 +18,7 @@ dotnet new webapi --创建webapi项目
 
 # 3.创建Models
 
-```
+```csharp
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
