@@ -2,7 +2,7 @@
 
 在命令行中运行命令
 
-```csharp
+```
 dotnet new webapi --创建webapi项目
 ```
 
