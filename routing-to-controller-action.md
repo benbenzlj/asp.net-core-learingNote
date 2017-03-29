@@ -27,4 +27,10 @@ public class ProductsController : Controller
 ```c#
 routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
 ```
+### 路由模板
+- `{controller=Home}`定义了`Controller`的默认值为`Home`
+- `{action=Index}`定义了`Action`的默认值为`Index`
+- `id?`定义了`id`为可选择的（可为空）
+
+默认和可选路由参数不需要URL路径中匹配，有关路由模板的详细描述请参见[路由模板引用](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/routing#route-template-reference)
 
